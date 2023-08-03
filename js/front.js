@@ -6,7 +6,9 @@ addEventListener("load",() => {
     setBlobPosition(cards);
 })
 
-
+addEventListener("resize",() => {
+    setTableDataBars();
+})
 
 addEventListener("scroll",() => {
     setBlobPosition(cards);
