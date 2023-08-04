@@ -1,18 +1,11 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;800&family=Open+Sans&display=swap");
 :root {
-  --small-space: 4px;
-  --medium-space: 5px;
-  --big-space: 10px;
-  --giant-space: 26px;
-}
-@media (min-width: 480px) {
-  :root {
-    --small-space: 6px;
-    --medium-space: 8px;
-    --big-space: 16px;
-    --giant-space: 38px;
-  }
+  --small-space: 6px;
+  --medium-space: 8px;
+  --big-space: 16px;
+  --giant-space: 38px;
+  --section-width: 75%;
 }
 @media (min-width: 768px) {
   :root {
@@ -20,6 +13,7 @@
     --medium-space: 12px;
     --big-space: 25px;
     --giant-space: 61px;
+    --section-width: 75%;
   }
 }
 @media (min-width: 992px) {
@@ -28,6 +22,7 @@
     --medium-space: 17px;
     --big-space: 33px;
     --giant-space: 80px;
+    --section-width: 75%;
   }
 }
 @media (min-width: 1200px) {
@@ -36,20 +31,22 @@
     --medium-space: 20px;
     --big-space: 40px;
     --giant-space: 96px;
+    --section-width: 75%;
   }
 }
 
 body {
-  overflow-x: hidden;
   background-color: hsl(48deg, 100%, 96%);
   /*background: url(../assets/patern.svg);*/
   margin: 0;
   padding: 0;
   width: 100vw;
   height: max-content;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
   place-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  overflow-x: hidden;
 }
 
 /*-----------------------Header style-----------------------*/
@@ -134,37 +131,13 @@ body {
 /*-----------------------Section style-----------------------*/
 .section {
   position: relative;
-  left: 12.5%;
-  width: 75%;
+  width: var(--section-width);
+  max-width: 1200px;
   margin-bottom: var(--giant-space);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-.section::before {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  background: url(../assets/blob-1.svg) no-repeat 0 0;
-  background-size: 100% 100%;
-  height: calc(100% + var(--giant-space));
-  aspect-ratio: 1/1;
-  left: -16.6%;
-  transform: translate(calc((var(--x-screen-position)) - 100%), -50%);
-  top: 50%;
-}
-.section::after {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  background: url(../assets/blob-2.svg) no-repeat 0 0;
-  background-size: 100% 100%;
-  height: calc(100% + var(--giant-space));
-  aspect-ratio: 1/1;
-  right: -16.6%;
-  transform: translate(calc(-1 * var(--x-screen-position) + 100%), -50%);
-  top: 50%;
 }
 .section__card {
   position: relative;
@@ -226,6 +199,7 @@ body {
   font-size: var(--small-space);
   margin: 0 auto 0 auto;
   width: 50%;
+  min-width: 250px;
   list-style: none;
   overflow-wrap: break-word;
   align-items: baseline;
@@ -264,7 +238,7 @@ body {
   grid-column-gap: var(--small-space);
   grid-row-gap: var(--small-space);
   width: 100%;
-  height: calc(100% - var(--medium-space) - var(--big-space));
+  height: calc(100% - var(--big-space) - var(--medium-space) - var(--small-space));
 }
 .section__card-grid > * {
   position: relative;
@@ -279,6 +253,10 @@ body {
   backdrop-filter: blur(1px);
   width: 100%;
   width: calc(100% - var(--small-space) * 2);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: left;
 }
 .section__card-grid-card--wide {
   grid-column-start: 1;
@@ -304,12 +282,11 @@ body {
   content: "€";
 }
 .section__card-grid-card-title {
-  font-family: "Open Sans";
+  font-family: "Lexend";
   color: hsl(48deg, 100%, 96%);
   font-weight: 400;
-  font-size: 100%;
+  font-size: var(--medium-space);
   margin: 0 auto var(--small-space) auto;
-  font-weight: bold;
 }
 .section__card-grid-card--hover:hover {
   background-color: hsla(2deg, 84%, 56%, 0.75);
@@ -330,7 +307,8 @@ body {
 .section__card-table-data:not(:first-child)::before {
   content: "";
   position: absolute;
-  width: 4px;
+  width: calc(var(--small-space) / 4);
+  border-radius: calc(var(--small-space) / 8);
   height: calc(var(--row-height));
   border-radius: 2px;
   background-color: hsla(2deg, 84%, 56%, 0.75);
@@ -366,8 +344,8 @@ body {
   position: absolute;
   left: var(--medium-space);
   width: calc(100% - var(--medium-space) * 2);
-  height: 4px;
-  border-radius: 2px;
+  height: calc(var(--small-space) / 4);
+  border-radius: calc(var(--small-space) / 8);
   background-color: hsla(2deg, 84%, 56%, 0.75);
   transform: translateY(calc(var(--row-height) + 6px));
 }
@@ -379,17 +357,19 @@ body {
   background-color: hsl(194deg, 50%, 28%);
   padding: var(--small-space);
   box-shadow: 0px var(--small-space) var(--small-space) 0px hsla(0deg, 0%, 0%, 0.15) inset;
+  width: 100%;
 }
 .footer > * {
   position: relative;
   width: max-content;
   margin-left: auto;
   margin-right: auto;
+  max-width: 1200px;
 }
 .footer__pictureContainer {
   left: 50%;
   transform: translateX(-50%);
-  width: 75%;
+  width: var(--section-width);
   margin: 0 0 var(--medium-space) 0;
 }
 .footer__pictureContainer-picture > img {
@@ -399,7 +379,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  width: 75%;
+  width: var(--section-width);
   padding: 0;
   margin: 0 auto var(--small-space) auto;
   justify-content: center;
@@ -437,7 +417,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  width: 75%;
+  width: var(--section-width);
   padding: 0;
   margin: 0 auto var(--small-space) auto;
   justify-content: center;
@@ -447,29 +427,31 @@ body {
   overflow-wrap: break-word;
   font-family: "Open Sans";
   color: hsl(199deg, 38%, 45%);
-  font-size: 14px;
+  font-weight: 300;
+  font-size: var(--small-space);
+  margin: 0 auto 0 auto;
   transition: 0.3s;
 }
 .footer__legal-list-element-anchor:hover {
-  text-decoration: none;
-  overflow-wrap: break-word;
-  font-family: "Open Sans";
   color: hsl(48deg, 100%, 96%);
-  font-size: 14px;
-  transition: 0.3s;
 }
 .footer__legal-list-element:not(:last-child)::after {
   content: "•";
+  font-family: "Open Sans";
+  color: hsl(199deg, 38%, 45%);
+  font-weight: 300;
+  font-size: var(--small-space);
+  margin: 0 auto 0 auto;
   margin-left: var(--small-space);
   margin-right: var(--small-space);
-  font-weight: bold;
-  color: hsl(199deg, 38%, 45%);
 }
 .footer__legal-mentions {
   overflow-wrap: break-word;
   font-family: "Open Sans";
   color: hsl(199deg, 38%, 45%);
-  font-size: 14px;
+  font-weight: 300;
+  font-size: var(--small-space);
+  margin: 0 auto 0 auto;
   margin: 0 auto 0 auto;
 }
 
