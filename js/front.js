@@ -1,17 +1,9 @@
 const display = document.getElementById("display-scroll");
 const cards = document.querySelectorAll(".section");
+const rows = document.querySelectorAll("tr");
 
 addEventListener("load",() => {
-    setTableDataBars();
-    setBlobPosition(cards);
-})
-
-addEventListener("resize",() => {
-    setTableDataBars();
-})
-
-addEventListener("scroll",() => {
-    setBlobPosition(cards);
+    setTableDataBars(rows);
 })
 
 function getBlobPositionY(blob) {
@@ -34,8 +26,7 @@ function setBlobPosition(cards) {
     })
 }
 
-function setTableDataBars() {
-    let rows = document.querySelectorAll("tr");
+function setTableDataBars(rows) {
     rows.forEach((row) => {
         const style = getComputedStyle(row);
         const height = style.height;
