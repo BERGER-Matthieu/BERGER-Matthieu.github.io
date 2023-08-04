@@ -4,7 +4,7 @@
   --small-space: 12px;
   --medium-space: 14px;
   --big-space: 16px;
-  --giant-space: 38px;
+  --giant-space: 64px;
   --section-width: 90;
 }
 @media (min-width: 768px) {
@@ -35,6 +35,10 @@
   }
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background-color: hsl(48deg, 100%, 96%);
   /*background: url(../assets/patern.svg);*/
@@ -57,7 +61,6 @@ body {
   box-shadow: 0px var(--small-space) var(--small-space) 0px hsla(0deg, 0%, 0%, 0.15);
   z-index: 1;
   margin: 0;
-  margin-bottom: var(--giant-space);
   width: 100%;
 }
 .header > * {
@@ -144,6 +147,21 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.section--wide {
+  width: 100%;
+  max-width: 100%;
+  background-color: hsl(194deg, 50%, 28%);
+  display: flex;
+  justify-content: center !important;
+  background-image: url(../assets/patern\ wave\ 3.svg);
+}
+.section--wide > .section__card {
+  background-color: transparent !important;
+  max-width: 1200px;
+  box-shadow: none;
+  width: calc(var(--section-width) * 1%);
+  backdrop-filter: none;
+}
 .section__card {
   position: relative;
   background-color: hsla(0deg, 0%, 100%, 0.75);
@@ -171,12 +189,18 @@ body {
   font-size: var(--big-space);
   margin: 0 auto var(--medium-space) auto;
 }
-.section__card-sub-title {
+.section__card-title--wide {
+  color: hsl(48deg, 100%, 96%);
+}
+.section__card-subTitle {
   font-family: "Open Sans";
   color: hsl(194deg, 60%, 33%);
   font-weight: 0;
   font-size: var(--small-space);
   margin: 0 auto var(--small-space) auto;
+}
+.section__card-subTitle--wide {
+  color: hsl(48deg, 100%, 96%);
 }
 .section__card-paragraph {
   font-family: "Open Sans";
@@ -187,6 +211,23 @@ body {
 }
 .section__card-paragraph > b {
   color: hsl(194deg, 60%, 33%);
+}
+.section__card-paragraph--wide {
+  color: hsl(48deg, 100%, 96%);
+}
+.section__card-conclusion {
+  font-family: "Open Sans";
+  color: hsl(194deg, 50%, 28%);
+  font-weight: 0;
+  font-size: var(--small-space);
+  margin: 0 auto 0 auto;
+  transition: 0.3s;
+}
+.section__card-conclusion--wide {
+  color: hsl(199deg, 38%, 45%);
+}
+.section__card-conclusion--wide:hover {
+  color: hsl(48deg, 100%, 96%);
 }
 .section__card-list {
   display: flex;
@@ -221,13 +262,6 @@ body {
   font-weight: bold;
   padding-right: 8px;
   color: hsl(2deg, 84%, 48%);
-}
-.section__card-conclusion {
-  font-family: "Open Sans";
-  color: hsl(194deg, 50%, 28%);
-  font-weight: 0;
-  font-size: var(--small-space);
-  margin: 0 auto 0 auto;
 }
 .section__card-formule {
   text-align: center;
@@ -312,6 +346,7 @@ body {
 .section__card-table-data {
   width: 20%;
   height: var(--row-height);
+  padding: var(--small-space);
 }
 .section__card-table-data:not(:first-child) {
   border-right: 10px none solid;
@@ -359,7 +394,7 @@ body {
   height: calc(var(--small-space) / 4);
   border-radius: calc(var(--small-space) / 8);
   background-color: hsla(2deg, 84%, 56%, 0.75);
-  transform: translateY(calc(var(--row-height) + 6px));
+  transform: translateY(calc(var(--row-height) + 6px + var(--small-space) * 2));
 }
 
 /*-----------------------Footer style-----------------------*/

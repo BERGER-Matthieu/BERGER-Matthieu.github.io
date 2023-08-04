@@ -29,7 +29,7 @@ $transition-time: 0.3s;
     --small-space : 12px;
     --medium-space : 14px;
     --big-space : 16px;
-    --giant-space : 38px;
+    --giant-space : 64px;
     --section-width : 90;
 
     //most tablets
@@ -58,6 +58,10 @@ $transition-time: 0.3s;
         --giant-space : 96px;
         --section-width : 75;
     }
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 $small-space : var(--small-space);
@@ -108,8 +112,7 @@ body {
     padding: $small-space 0 $small-space 0 ;
     box-shadow: 0px $small-space $small-space 0px hsla(0, 0%, 0%, 0.15);
     z-index: 1;
-    margin: 0;
-    margin-bottom: $giant-space;
+    margin: 0;  
     width: 100%;
 
     & > * {
@@ -208,6 +211,27 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
 
+    &--wide {
+        width: 100%;
+        max-width: 100%;
+        background-color: $dark-blue;
+        display: flex;
+        justify-content: center !important;
+        background-image: url(../assets/patern\ wave\ 3.svg);
+
+        & > .section{
+
+            &__card {
+                background-color: transparent !important;
+                max-width: 1200px;
+                box-shadow: none;
+                width: calc($section-width * 1%);
+                backdrop-filter: none;
+            }
+
+        }
+    }
+
     &__card {
         @include cardBackground($medium-space, $small-space , $transparent-background-white);
         
@@ -225,10 +249,18 @@ body {
 
         &-title {
             @include textSetup($primary-font, $big-space, $dark-blue, 400, $medium-space);
+
+            &--wide {
+                color: $background-color;
+            }
         }
 
-        &-sub-title {
+        &-subTitle {
             @include textSetup($secondary-font, $small-space, $medium-blue, 0, $small-space);
+
+            &--wide {
+                color: $background-color;
+            }
         }
 
         &-paragraph {
@@ -236,6 +268,23 @@ body {
 
             & > b{
                 color: $medium-blue;
+            }
+
+            &--wide {
+                color: $background-color;
+            }
+        }
+
+        
+        &-conclusion {
+            @include textSetup($secondary-font, $small-space, $dark-blue, 0, 0);
+            transition: $transition-time;
+            
+            &--wide {
+                color: $light-blue;
+                &:hover {
+                    color: $background-color;
+                }
             }
         }
 
@@ -274,10 +323,6 @@ body {
             }
         }
         
-        &-conclusion {
-            @include textSetup($secondary-font, $small-space, $dark-blue, 0, 0);
-        }
-
         &-formule {
             text-align: center;
             @include textSetup($primary-font, $big-space, $dark-red, 800, $medium-space);
@@ -350,6 +395,7 @@ body {
             &-data {
                 width: 20%;
                 height: var(--row-height);
+                padding: $small-space;
                 &:not(:first-child) {
                     border-right: 10px none solid;
                     &::before {
@@ -394,7 +440,7 @@ body {
                         height: calc($small-space / 4);
                         border-radius: calc($small-space / 8);
                         background-color: $transparent-red;
-                        transform: translateY(calc(var(--row-height) + 6px));
+                        transform: translateY(calc(var(--row-height) + 6px + $small-space*2));
                     }
                 }
             }
