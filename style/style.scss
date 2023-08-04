@@ -26,8 +26,8 @@ $transition-time: 0.3s;
 
 :root {
     //small devices and phones
-    --small-space : 8px;
-    --medium-space : 12px;
+    --small-space : 12px;
+    --medium-space : 14px;
     --big-space : 16px;
     --giant-space : 38px;
     --section-width : 90;
@@ -47,7 +47,7 @@ $transition-time: 0.3s;
         --medium-space : 17px;
         --big-space : 33px;
         --giant-space : 80px;
-        --section-width : 75;
+        --section-width : 90;
     }
     
     //larges devices
@@ -122,6 +122,10 @@ body {
     &__pictureContainer {
         &-picture > img {
             height: $big-space;
+
+            @media (max-width:768px){
+                height: $giant-space;
+            }
         }
     }
 
@@ -209,11 +213,14 @@ body {
         
 
         &--small {
+            @media (max-width:768px){
+                width: 100%;
+            }
             width: calc((50% - $small-space /2) - $medium-space * 2);
         }
 
-        &--topMargin {
-            margin-top: $small-space
+        &--bottomMargin {
+            margin-bottom: $small-space
         }
 
         &-title {

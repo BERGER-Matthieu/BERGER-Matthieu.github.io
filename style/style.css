@@ -1,8 +1,8 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;800&family=Open+Sans&display=swap");
 :root {
-  --small-space: 8px;
-  --medium-space: 12px;
+  --small-space: 12px;
+  --medium-space: 14px;
   --big-space: 16px;
   --giant-space: 38px;
   --section-width: 90;
@@ -22,7 +22,7 @@
     --medium-space: 17px;
     --big-space: 33px;
     --giant-space: 80px;
-    --section-width: 75;
+    --section-width: 90;
   }
 }
 @media (min-width: 1200px) {
@@ -68,6 +68,11 @@ body {
 }
 .header__pictureContainer-picture > img {
   height: var(--big-space);
+}
+@media (max-width: 768px) {
+  .header__pictureContainer-picture > img {
+    height: var(--giant-space);
+  }
 }
 .header__title {
   font-family: "Open Sans";
@@ -151,8 +156,13 @@ body {
 .section__card--small {
   width: calc(50% - var(--small-space) / 2 - var(--medium-space) * 2);
 }
-.section__card--topMargin {
-  margin-top: var(--small-space);
+@media (max-width: 768px) {
+  .section__card--small {
+    width: 100%;
+  }
+}
+.section__card--bottomMargin {
+  margin-bottom: var(--small-space);
 }
 .section__card-title {
   font-family: "Lexend";
